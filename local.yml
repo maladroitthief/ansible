@@ -4,7 +4,17 @@
   hosts: localhost
 
   roles:
+    - role: roles/common
+      tags:
+        - install
+        - common
+
     - role: roles/go
       tags:
         - install
         - go
+
+    - role: roles/neovim
+      tags:
+        - install
+        - neovim
