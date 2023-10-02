@@ -1,0 +1,10 @@
+---
+- name: Local install playbook
+  connection: local
+  hosts: localhost
+
+  roles:
+    - role: roles/go
+      tags:
+        - install
+        - go
