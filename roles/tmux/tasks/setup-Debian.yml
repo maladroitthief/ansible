@@ -1,0 +1,8 @@
+---
+- name: Install tmux
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+    pkg:
+      - tmux
+    state: present
