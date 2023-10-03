@@ -18,3 +18,8 @@
       tags:
         - install
         - neovim
+
+    - role: roles/nodejs
+      tags:
+        - install
+        - nodejs
