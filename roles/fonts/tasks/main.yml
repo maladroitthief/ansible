@@ -1,0 +1,9 @@
+---
+# Setup/install tasks.
+- ansible.builtin.include_tasks: setup-Debian.yml
+  vars:
+    font_name: "{{ item.name }}"
+    font_release_url: "{{ item.release_url }}"
+    font_ttf_dir: "{{ item.ttf_dir }}"
+  when: ansible_os_family == 'Debian'
+  loop: "{{ fonts }}"

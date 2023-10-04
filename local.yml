@@ -28,3 +28,8 @@
       tags:
         - install
         - tmux
+
+    - role: roles/fonts
+      tags:
+        - install
+        - fonts

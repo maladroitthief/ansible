@@ -1,0 +1,38 @@
+---
+- name: Fetch metadata
+  ansible.builtin.uri:
+    url: "{{ font_release_url }}"
+    return_content: true
+  register: font_response
+
+- name: Create tmp directory
+  become: true
+  ansible.builtin.file:
+    path: /tmp/fonts/{{ font_name }}
+    state: directory
+
+- name: Unarchive font
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ font_response.json.assets[0].browser_download_url }}"
+    dest: /tmp/fonts/{{ font_name }}
+    remote_src: yes
+
+- name: Create font directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/share/fonts/{{ font_name }}
+    state: directory
+
+- name: Move the fonts to the font directory
+  become: true
+  ansible.builtin.copy:
+    src: /tmp/fonts/{{ font_name }}/{{ font_ttf_dir }}/
+    dest: /usr/share/fonts/{{ font_name }}/
+    remote_src: yes
+  register: install_font
+
+- name: Refresh font cache
+  become: true
+  ansible.builtin.shell: fc-cache -f -v
+  when: install_font.changed
