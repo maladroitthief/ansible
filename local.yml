@@ -9,6 +9,11 @@
         - install
         - common
 
+    - role: roles/maintenance
+      tags:
+        - install
+        - maintenance
+
     - role: roles/go
       tags:
         - install

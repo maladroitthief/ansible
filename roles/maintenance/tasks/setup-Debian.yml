@@ -1,0 +1,10 @@
+---
+- name: Create scheduled reboot
+  become: true
+  ansible.builtin.cron:
+    name: "reboot"
+    user: "root"
+    hour: "2"
+    minute: "0"
+    job: "/sbin/reboot"
+
