@@ -17,6 +17,15 @@
     src: "{{ font_response.json.assets[0].browser_download_url }}"
     dest: /tmp/fonts/{{ font_name }}
     remote_src: yes
+  when: font_is_asset
+
+- name: Unarchive font
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ font_response.json.zipball_url }}"
+    dest: /tmp/fonts/{{ font_name }}
+    remote_src: yes
+  when: not font_is_asset
 
 - name: Create font directory
   become: true

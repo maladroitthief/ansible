@@ -5,5 +5,6 @@
     font_name: "{{ item.name }}"
     font_release_url: "{{ item.release_url }}"
     font_ttf_dir: "{{ item.ttf_dir }}"
+    font_is_asset: "{{ item.is_asset }}"
   when: ansible_os_family == 'Debian'
   loop: "{{ fonts }}"

@@ -1,0 +1,27 @@
+---
+- name: Remove existing installation of zig
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/zig/
+    state: absent
+
+- name: Re-create the directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/zig/
+    state: directory
+
+- name: Install zig
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://ziglang.org/download/{{ zig_version}}/zig-linux-x86_64-{{ zig_version }}.tar.xz"
+    dest: /usr/local/zig
+    remote_src: yes
+    extra_opts:
+      - --strip-components=1
+
+- name: Add zig binary to PATH
+  ansible.builtin.lineinfile:
+    path: $HOME/.profile
+    line: export PATH=$PATH:/usr/local/zig
+    insertafter: EOF

@@ -19,6 +19,11 @@
         - install
         - go
 
+    - role: roles/zig
+      tags:
+        - install
+        - zig
+
     - role: roles/neovim
       tags:
         - install

@@ -3,3 +3,9 @@ fonts:
   - name: firacode
     release_url: https://api.github.com/repos/tonsky/FiraCode/releases/latest
     ttf_dir: ttf
+    is_asset: true
+
+  - name: codicon
+    release_url: https://api.github.com/repos/microsoft/vscode-codicons/releases/latest
+    ttf_dir: "microsoft-vscode-codicons-116cdad/dist"
+    is_asset: false

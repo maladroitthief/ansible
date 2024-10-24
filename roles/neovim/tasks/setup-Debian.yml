@@ -1,8 +1,9 @@
 ---
 - name: Download neovim
+  become: true
   ansible.builtin.get_url:
     url: "https://github.com/neovim/neovim/releases/download/\
           {{ neovim_version }}/nvim.appimage"
-    dest: $HOME/.local/bin/nvim
+    dest: /usr/local/bin/nvim
     mode: u+x
     force: true
